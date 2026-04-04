@@ -32,8 +32,8 @@ const sections = {
         video: 'https://www.youtube.com/watch?v=jdrIklLVwjc&feature=youtu.be',
       },
       {
-        title: 'Thesis',
-        authors: 'Matya Stavnitzky',
+        title: 'On Experts and Algorithms: Who Decides When AI Decides?',
+        authors: 'Matya Stavnitzky.',
         year: '2026.',
         pdf: withBase('papers/COGS-Thesis.pdf'),
         // video is optional
