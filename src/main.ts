@@ -1,5 +1,8 @@
 import './style.css'
 
+const baseUrl = import.meta.env.BASE_URL
+const withBase = (path: string) => `${baseUrl}${path.replace(/^\/+/, '')}`
+
 
 
 // Portfolio data
@@ -25,14 +28,14 @@ const sections = {
         title: 'Investigating the Effects of Photography on Recall.',
         authors: 'Matya Stavnitzky, Daniel Vogel, and Nikhita Joshi.',
         year: 'CHI EA 2026.',
-        pdf: '/papers/photography-memory.pdf',
+        pdf: withBase('papers/photography-memory.pdf'),
         video: 'https://www.youtube.com/watch?v=jdrIklLVwjc&feature=youtu.be',
       },
       {
         title: 'Thesis',
         authors: 'Matya Stavnitzky',
         year: '2026.',
-        pdf: '/papers/COGS-Thesis.pdf',
+        pdf: withBase('papers/COGS-Thesis.pdf'),
         // video is optional
       },
     ] as ResearchItem[],
@@ -89,7 +92,7 @@ app.innerHTML = `
         <!-- Links to other things -->
         <div class="bg-orange-50 rounded-full px-5 p-3 w-fit">
           <div class="text-gray-800 font-medium text-sm text-right">
-            <a href="/papers/MStavnitzky-CV.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-violet-700 transition">CV</a>
+            <a href="${withBase('papers/MStavnitzky-CV.pdf')}" target="_blank" rel="noopener noreferrer" class="hover:text-violet-700 transition">CV</a>
               <span class="mx-2">|</span>
             <a href="https://www.linkedin.com/in/matya-stavnitzky/" target="_blank" rel="noopener noreferrer" class="hover:text-violet-700 transition">LinkedIn</a>
           </div>
