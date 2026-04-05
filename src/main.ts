@@ -62,7 +62,7 @@ class PortfolioApp {
       if (isDesktop && mainContent) {
         const containerRect = mainContent.getBoundingClientRect()
         const targetRect = scrollTarget.getBoundingClientRect()
-        const desktopOffset = mainContent.clientHeight * 0.32
+        const desktopOffset = mainContent.clientHeight * 0.30
 
         mainContent.scrollTo({
           top: Math.max(

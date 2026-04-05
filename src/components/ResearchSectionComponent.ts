@@ -22,7 +22,7 @@ export class ResearchSectionComponent extends BaseComponent {
               .map(
                 (item) => `
                   <article class="pb-5 border-b border-gray-200 last:border-b-0">
-                    <h3 class="text-base sm:text-lg font-semibold mb-1 leading-snug text-gray-600">
+                    <h3 class="text-base sm:text-lg mb-1 leading-snug text-gray-600 font-semibold">
                       ${item.title} ${item.authors} ${item.year}
                     </h3>
 

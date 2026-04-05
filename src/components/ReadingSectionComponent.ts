@@ -26,7 +26,7 @@ export class ReadingSectionComponent extends BaseComponent {
 
                 <article class="pb-0">
                   <div class="flex items-baseline justify-between gap-4 border-b border-transparent">
-                    <h3 class="min-w-0 flex-1 truncate text-base sm:text-lg font-semibold mb-1 leading-snug text-gray-600" title="${item.title}">
+                    <h3 class="min-w-0 flex-1 truncate text-base sm:text-lg font-semibold mb-0 leading-snug text-gray-600" title="${item.title}">
                       ${item.title}
                     </h3>
                     <div class="shrink-0 text-gray-800 font-medium text-sm whitespace-nowrap">

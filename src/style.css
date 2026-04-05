@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
-body { background-color: #8d7412; }  /* amber-50 equivalent */
+
+:root {
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-display: "Noto Sans", sans-serif;
+}
+
+html,
+body {
+	font-family: var(--font-body);
+}
+
+.text-4xl,
+.text-5xl,
+.text-6xl,
+.text-7xl {
+	font-family: var(--font-display);
+}
