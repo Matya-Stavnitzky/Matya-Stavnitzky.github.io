@@ -6,6 +6,11 @@ export type ResearchItem = {
   video?: string
 }
 
+export type ReadingItem = {
+  title: string
+  status: string
+}
+
 export type ProfileData = {
   name: string
   bio: string

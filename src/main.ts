@@ -1,8 +1,10 @@
 import './style.css'
 import { AppShellComponent } from './components/AppShellComponent'
 import { DecorativeSectionComponent } from './components/DecorativeSectionComponent'
+import { ReadingSectionComponent } from './components/ReadingSectionComponent'
 import { ResearchSectionComponent } from './components/ResearchSectionComponent'
 import { SidebarComponent } from './components/SidebarComponent'
+import { readingItems } from './data/readingData'
 import { createPortfolioData } from './data/portfolioData'
 
 class PortfolioApp {
@@ -26,10 +28,12 @@ class PortfolioApp {
   private render(): void {
     const sidebar = new SidebarComponent(this.data.profile)
     const decorativeSection = new DecorativeSectionComponent()
+    const readingSection = new ReadingSectionComponent(readingItems)
     const researchSection = new ResearchSectionComponent(this.data.research)
     const appShell = new AppShellComponent(sidebar, [
       decorativeSection,
       researchSection,
+      readingSection,
     ])
 
     this.appRoot.innerHTML = appShell.render()
@@ -39,27 +43,57 @@ class PortfolioApp {
     const researchLink = document.querySelector<HTMLAnchorElement>(
       '.scroll-to-research'
     )
+    const readingLink = document.querySelector<HTMLAnchorElement>(
+      '.scroll-to-reading'
+    )
 
-    researchLink?.addEventListener('click', (event) => {
-      event.preventDefault()
-
-      const researchSection = document.querySelector<HTMLElement>('#research')
+    const scrollToSection = (sectionId: string): void => {
+      const targetSection = document.querySelector<HTMLElement>(sectionId)
       const mainContent = document.querySelector<HTMLElement>('[data-main-content]')
-      if (!researchSection) {
+      if (!targetSection) {
         return
       }
+
+      const scrollTarget =
+        targetSection.querySelector<HTMLElement>('h2') ?? targetSection
 
       const isDesktop = window.matchMedia('(min-width: 1024px)').matches
 
       if (isDesktop && mainContent) {
+        const containerRect = mainContent.getBoundingClientRect()
+        const targetRect = scrollTarget.getBoundingClientRect()
+        const desktopOffset = mainContent.clientHeight * 0.32
+
         mainContent.scrollTo({
-          top: Math.max(researchSection.offsetTop - 90, 0),
+          top: Math.max(
+            mainContent.scrollTop +
+              (targetRect.top - containerRect.top) -
+              desktopOffset,
+            0
+          ),
           behavior: 'smooth',
         })
         return
       }
 
-      researchSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      const mobileOffset = window.innerHeight * 0.1
+      const top =
+        window.scrollY + scrollTarget.getBoundingClientRect().top - mobileOffset
+
+      window.scrollTo({
+        top: Math.max(top, 0),
+        behavior: 'smooth',
+      })
+    }
+
+    researchLink?.addEventListener('click', (event) => {
+      event.preventDefault()
+      scrollToSection('#research')
+    })
+
+    readingLink?.addEventListener('click', (event) => {
+      event.preventDefault()
+      scrollToSection('#reading')
     })
   }
 }

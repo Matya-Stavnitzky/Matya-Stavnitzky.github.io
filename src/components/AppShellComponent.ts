@@ -16,6 +16,7 @@ export class AppShellComponent extends BaseComponent {
         ${this.sidebar.render()}
         <main data-main-content class="w-full flex-1 bg-orange-50 lg:h-screen lg:overflow-y-auto">
           ${this.sections.map((section) => section.render()).join('')}
+          <div aria-hidden="true" class="hidden lg:block h-56"></div>
         </main>
       </div>
     `

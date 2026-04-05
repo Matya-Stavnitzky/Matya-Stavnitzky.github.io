@@ -8,7 +8,7 @@ export const createPortfolioData = (
     bio: 'I am a Computer Science and Cognitive Science student at Mount Allison University.',
     cvPath: withBase('papers/MStavnitzky-CV.pdf'),
     linkedInUrl: 'https://www.linkedin.com/in/matya-stavnitzky/',
-    updatedAt: 'April 3, 2026',
+    updatedAt: 'April 4, 2026',
     copyright: 'Matya Stavnitzky',
   },
   research: [
