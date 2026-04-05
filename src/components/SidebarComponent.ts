@@ -14,7 +14,7 @@ export class SidebarComponent extends BaseComponent {
     const lastName = this.profile.name.split(' ').slice(1).join(' ')
 
     return `
-      <aside class="w-full lg:w-[35%] flex-shrink-0 bg-gradient-to-r from-violet-200 to-orange-50 to-107% py-10 sm:py-12 lg:py-20 px-6 sm:px-10 lg:px-16 flex flex-col lg:h-screen lg:sticky lg:top-0">
+      <aside class="w-full lg:w-[40%] flex-shrink-0 bg-gradient-to-r from-violet-200 to-orange-50 to-107% py-10 sm:py-12 lg:py-20 px-6 sm:px-10 lg:px-16 flex flex-col lg:h-screen lg:sticky lg:top-0">
         <div class="flex-1 flex flex-col justify-center lg:items-end">
           <h1 class="text-4xl sm:text-5xl lg:text-7xl text-left lg:text-right mb-8 lg:mb-12 text-gray-700 leading-none font-sans">
             ${firstName}<br>${lastName}
@@ -23,7 +23,9 @@ export class SidebarComponent extends BaseComponent {
           <p class="text-gray-600 text-base lg:text-right rounded-lg p-1 leading-snug max-w-xl lg:max-w-none lg:ml-10 mb-10 lg:mb-16">
             ${this.profile.bio} My
             <a href="#research" class="scroll-to-research hover:text-violet-700 underline underline-offset-2 transition">research</a>
-            focuses on thoughtful applications of technology. I love reading, writing, rock climbing, and photography.
+            focuses on thoughtful applications of technology. I love 
+            <a href="#reading" class="scroll-to-reading hover:text-violet-700 underline underline-offset-2 transition">reading</a>, 
+            writing, rock climbing, and photography.
           </p>
 
           <div class="bg-orange-50 rounded-full px-5 py-3 w-fit lg:self-end">
