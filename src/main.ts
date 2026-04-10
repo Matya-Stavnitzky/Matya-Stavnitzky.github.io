@@ -4,6 +4,9 @@ import { DecorativeSectionComponent } from './components/DecorativeSectionCompon
 import { ReadingSectionComponent } from './components/ReadingSectionComponent'
 import { ResearchSectionComponent } from './components/ResearchSectionComponent'
 import { SidebarComponent } from './components/SidebarComponent'
+import { BlogPage } from './pages/BlogPage'
+import { SpecificBlogPost } from './pages/SpecificBlogPost'
+import { getBlogPost } from './data/blogPosts'
 import { readingItems } from './data/readingData'
 import { createPortfolioData } from './data/portfolioData'
 
@@ -20,13 +23,89 @@ class PortfolioApp {
     this.bindEvents()
   }
 
+  private getBasePath(): string {
+    const baseUrl = import.meta.env.BASE_URL
+    return baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
+  }
+
+  private getAppPathname(): string {
+    const url = new URL(window.location.href)
+    const legacyPath = url.searchParams.get('path')
+    const basePath = this.getBasePath()
+
+    let pathname = legacyPath ?? url.pathname
+
+    if (basePath && pathname.startsWith(basePath)) {
+      pathname = pathname.slice(basePath.length) || '/'
+    }
+
+    if (!pathname.startsWith('/')) {
+      pathname = `/${pathname}`
+    }
+
+    return pathname.replace(/\/+$/, '') || '/'
+  }
+
+  private getRoute(): { kind: 'home' | 'blog-index' | 'blog-post'; slug?: string } {
+    const url = new URL(window.location.href)
+    const legacyPost = url.searchParams.get('post')
+
+    if (legacyPost) {
+      return { kind: 'blog-post', slug: legacyPost }
+    }
+
+    const pathname = this.getAppPathname()
+
+    if (pathname === '/blog') {
+      return { kind: 'blog-index' }
+    }
+
+    if (pathname.startsWith('/blog/')) {
+      const slug = pathname.slice('/blog/'.length)
+      if (slug) {
+        return { kind: 'blog-post', slug }
+      }
+    }
+
+    return { kind: 'home' }
+  }
+
   private withBase(path: string): string {
     const baseUrl = import.meta.env.BASE_URL
     return `${baseUrl}${path.replace(/^\/+/, '')}`
   }
 
   private render(): void {
-    const sidebar = new SidebarComponent(this.data.profile)
+    const route = this.getRoute()
+
+    if (route.kind === 'blog-index') {
+      const blogPage = new BlogPage({ withBase: this.withBase.bind(this), profile: this.data.profile })
+
+      this.appRoot.innerHTML = blogPage.render()
+      return
+    }
+
+    if (route.kind === 'blog-post' && route.slug) {
+      const post = getBlogPost(route.slug)
+
+      if (post) {
+        const specificBlogPost = new SpecificBlogPost({
+          post,
+          withBase: this.withBase.bind(this),
+          profile: this.data.profile,
+        })
+
+        this.appRoot.innerHTML = specificBlogPost.render()
+        return
+      }
+
+      const blogPage = new BlogPage({ withBase: this.withBase.bind(this), profile: this.data.profile })
+
+      this.appRoot.innerHTML = blogPage.render()
+      return
+    }
+
+    const sidebar = new SidebarComponent(this.data.profile, this.withBase('blog/'))
     const decorativeSection = new DecorativeSectionComponent()
     const readingSection = new ReadingSectionComponent(readingItems)
     const researchSection = new ResearchSectionComponent(this.data.research)
