@@ -33,10 +33,10 @@ export class SidebarComponent extends BaseComponent {
           <div class="bg-orange-50 rounded-full px-5 py-3 w-fit lg:self-end">
             <div class="text-gray-800 font-medium text-sm">
               
-            <!-- Link to blog page, likely should be removed an a page added for writing
+            
             <a href="${this.blogPath}" class="hover:text-violet-700 transition">Blog</a>
               <span class="mx-2">|</span>
-            --> 
+  
 
               <a href="${this.profile.cvPath}" target="_blank" rel="noopener noreferrer" class="hover:text-violet-700 transition">CV</a>
               <span class="mx-2">|</span>
