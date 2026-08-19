@@ -6,7 +6,7 @@ export const createPortfolioData = (
 ): PortfolioData => ({
   profile: {
     name: 'Matya Stavnitzky',
-    bio: 'I am a Computer Science and Cognitive Science student at Mount Allison University.',
+    bio: 'I am a Computer Science Master’s student at the University of Waterloo.',
     cvPath: withBase('papers/MStavnitzky-CV.pdf'),
     linkedInUrl: 'https://www.linkedin.com/in/matya-stavnitzky/',
     updatedAt: lastUpdatedDate,
@@ -23,7 +23,7 @@ export const createPortfolioData = (
     {
       title: 'On Experts and Algorithms: Who Decides When AI Decides?',
       authors: 'Matya Stavnitzky.',
-      year: '2026.',
+      year: 'Undergraduate Thesis 2026.',
       pdf: withBase('papers/COGS-Thesis.pdf'),
     },
   ],
