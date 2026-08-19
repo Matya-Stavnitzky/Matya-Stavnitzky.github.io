@@ -10,6 +10,8 @@
 html,
 body {
 	font-family: var(--font-body);
+	max-width: 100%;
+	overflow-x: clip;
 }
 
 .text-4xl,
@@ -17,4 +19,39 @@ body {
 .text-6xl,
 .text-7xl {
 	font-family: var(--font-display);
+}
+
+img,
+video,
+canvas,
+svg,
+iframe {
+	max-width: 100%;
+	height: auto;
+}
+
+@media (max-width: 768px) {
+	*,
+	*::before,
+	*::after {
+		min-width: 0;
+	}
+
+	p,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	a,
+	li {
+		overflow-wrap: anywhere;
+	}
+
+	pre,
+	code,
+	table {
+		max-width: 100%;
+	}
 }

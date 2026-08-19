@@ -3,7 +3,7 @@ import { BaseComponent } from './BaseComponent'
 export class DecorativeSectionComponent extends BaseComponent {
   render(): string {
     return `
-      <section id="decorative" class="w-full min-h-[50vh] lg:min-h-screen flex items-center justify-center bg-orange-50 px-4 sm:px-8 lg:px-10 py-10">
+      <section id="decorative" class="w-full min-h-[50vh] lg:min-h-screen flex items-center justify-center bg-orange-50 px-4 sm:px-8 lg:px-10 py-10 overflow-hidden">
         <div class="relative mx-auto w-full max-w-xl lg:max-w-3xl h-72 sm:h-96">
 
             <!-- Top Left circle -->
