@@ -119,6 +119,8 @@ class PortfolioApp {
   }
 
   private bindEvents(): void {
+    const sidebar = document.querySelector<HTMLElement>('aside')
+    const mainContent = document.querySelector<HTMLElement>('[data-main-content]')
     const researchLink = document.querySelector<HTMLAnchorElement>(
       '.scroll-to-research'
     )
@@ -128,7 +130,6 @@ class PortfolioApp {
 
     const scrollToSection = (sectionId: string): void => {
       const targetSection = document.querySelector<HTMLElement>(sectionId)
-      const mainContent = document.querySelector<HTMLElement>('[data-main-content]')
       if (!targetSection) {
         return
       }
@@ -164,6 +165,19 @@ class PortfolioApp {
         behavior: 'smooth',
       })
     }
+
+    sidebar?.addEventListener(
+      'wheel',
+      (event: WheelEvent) => {
+        if (!window.matchMedia('(min-width: 1024px)').matches || !mainContent) {
+          return
+        }
+
+        event.preventDefault()
+        mainContent.scrollTop += event.deltaY
+      },
+      { passive: false }
+    )
 
     researchLink?.addEventListener('click', (event) => {
       event.preventDefault()

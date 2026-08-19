@@ -12,12 +12,14 @@ export class AppShellComponent extends BaseComponent {
 
   render(): string {
     return `
-      <div class="min-h-screen flex flex-col lg:flex-row bg-orange-50 text-gray-900">
+      <div class="min-h-screen flex flex-col lg:flex-row text-gray-900 lg:h-screen lg:overflow-hidden">
+
         ${this.sidebar.render()}
-        <main data-main-content class="w-full flex-1 bg-orange-50 lg:h-screen lg:overflow-y-auto">
+        <main data-main-content class="w-full flex-1 min-h-0 min-w-0 bg-orange-50 lg:h-screen lg:overflow-y-auto">
           ${this.sections.map((section) => section.render()).join('')}
           <div aria-hidden="true" class="hidden lg:block h-56"></div>
         </main>
+
       </div>
     `
   }
